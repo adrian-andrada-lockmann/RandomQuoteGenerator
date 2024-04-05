@@ -45,11 +45,9 @@ html {
     border: 1px solid black;
     border-radius: 4px;
     background: #F1F2B5;
-    /* fallback for old browsers */
     background: -webkit-linear-gradient(to bottom, #135058, #F1F2B5);
-    /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #135058, #F1F2B5);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
 }
 
 
