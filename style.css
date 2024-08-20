@@ -25,7 +25,7 @@ html {
 #title {
 
     font-family: "Oswald Variable";
-    font-size: 4vh;
+    font-size: 3rem;
     background-color: #f1f2b581;
     border-radius: 8px;
     justify-content: center;
@@ -37,7 +37,7 @@ html {
 #quote-box {
     align-items: center;
     font-family: 'Overpass Variable';
-    font-size: 3vh;
+    font-size: 2rem;
     max-width: 600px;
     margin: 10vw auto;
     text-align: center;
@@ -55,9 +55,15 @@ html {
     background-color: rgb(29, 29, 29);
     font-family: "Oswald Variable";
     color: #dadada;
-    font-size: 1vw;
+    font-size: 1.5rem;
     padding: 1vh;
     margin-bottom: 1vh;
     border-radius: 30px;
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    #new-quote {
+        font-size: 1rem;
+    }
 }

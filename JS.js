@@ -19,9 +19,6 @@ async function getRandomQuote() {
     }
 }
 
-
-
-// Update the quote text and author text with a new quote
 async function updateQuote() {
     const quote = await getRandomQuote();
 
