@@ -1,17 +1,18 @@
 :root {
-    --ink: #111827;
-    --muted: #586174;
-    --paper: #f7f3ea;
-    --surface: #ffffff;
-    --surface-alt: #eee7da;
-    --line: #ded4c2;
-    --accent: #2f7d6f;
-    --accent-strong: #185d52;
-    --warm: #d96f32;
-    --gold: #e0b33b;
-    --shadow: 0 24px 80px rgba(17, 24, 39, 0.14);
-    --radius: 8px;
-    --max-width: 1180px;
+    --ink: #241f1a;
+    --muted: #73685e;
+    --paper: #f5efe3;
+    --paper-deep: #e5dac8;
+    --surface: #fffaf0;
+    --surface-alt: #f0e6d5;
+    --line: #cabda8;
+    --accent: #6f3324;
+    --accent-strong: #4f241a;
+    --warm: #a05d38;
+    --gold: #d7b56d;
+    --shadow: 0 18px 50px rgba(57, 40, 24, 0.14);
+    --radius: 6px;
+    --max-width: 1160px;
 }
 
 * {
@@ -27,12 +28,26 @@ body {
     min-height: 100svh;
     color: var(--ink);
     background:
-        linear-gradient(135deg, rgba(47, 125, 111, 0.16), transparent 34%),
-        linear-gradient(225deg, rgba(217, 111, 50, 0.14), transparent 32%),
+        linear-gradient(90deg, rgba(36, 31, 26, 0.035) 1px, transparent 1px),
+        linear-gradient(rgba(36, 31, 26, 0.03) 1px, transparent 1px),
+        radial-gradient(circle at 18% 10%, rgba(160, 93, 56, 0.18), transparent 28%),
+        radial-gradient(circle at 82% 16%, rgba(111, 51, 36, 0.12), transparent 28%),
         var(--paper);
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-size: 36px 36px, 36px 36px, auto, auto, auto;
+    font-family: "Courier New", Courier, monospace;
     line-height: 1.5;
     letter-spacing: 0;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        linear-gradient(115deg, transparent 0 12%, rgba(255, 250, 240, 0.58) 12% 72%, transparent 72%),
+        linear-gradient(90deg, rgba(36, 31, 26, 0.04), transparent 18% 82%, rgba(36, 31, 26, 0.05));
 }
 
 button,
@@ -76,7 +91,9 @@ ul {
     justify-content: space-between;
     gap: 1rem;
     padding: 0.9rem 0;
-    backdrop-filter: blur(18px);
+    background: rgba(245, 239, 227, 0.78);
+    border-bottom: 1px solid rgba(202, 189, 168, 0.72);
+    backdrop-filter: blur(16px);
 }
 
 .brand {
@@ -91,15 +108,22 @@ ul {
     height: 44px;
     display: inline-grid;
     place-items: center;
-    color: #fffaf1;
+    color: var(--surface);
     background: var(--ink);
-    border-radius: var(--radius);
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    font-family: Georgia, "Times New Roman", serif;
     font-weight: 900;
 }
 
 .brand strong,
 .brand small {
     display: block;
+}
+
+.brand strong {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.05rem;
 }
 
 .brand small {
@@ -133,15 +157,15 @@ ul {
 .secondary-button {
     padding: 0.65rem 0.85rem;
     color: var(--ink);
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(255, 250, 240, 0.7);
     border: 1px solid var(--line);
 }
 
 .primary-button {
     padding: 0.72rem 1rem;
-    color: #fffaf1;
-    background: var(--ink);
-    border: 1px solid var(--ink);
+    color: var(--surface);
+    background: var(--accent-strong);
+    border: 1px solid var(--accent-strong);
 }
 
 .text-button {
@@ -170,8 +194,8 @@ ul {
 }
 
 .primary-button:hover {
-    background: var(--accent-strong);
-    border-color: var(--accent-strong);
+    background: var(--ink);
+    border-color: var(--ink);
 }
 
 .studio-hero {
@@ -188,16 +212,38 @@ ul {
 .quote-card,
 .prompt-card,
 .panel {
-    background: rgba(255, 255, 255, 0.76);
-    border: 1px solid rgba(222, 212, 194, 0.9);
+    background: var(--surface);
+    border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
 }
 
+.hero-copy,
+.quote-card,
+.panel {
+    background:
+        linear-gradient(90deg, rgba(111, 51, 36, 0.12) 0 1px, transparent 1px 100%),
+        repeating-linear-gradient(0deg, transparent 0 31px, rgba(36, 31, 26, 0.07) 32px),
+        var(--surface);
+    background-position: 1.2rem 0, 0 0, 0 0;
+}
+
 .hero-copy {
-    padding: 2rem;
+    position: relative;
+    padding: 2.2rem 2rem 2rem 2.35rem;
     display: grid;
     gap: 1rem;
+}
+
+.hero-copy::after {
+    content: "";
+    position: absolute;
+    right: 1.4rem;
+    bottom: 1.4rem;
+    width: 92px;
+    height: 24px;
+    border: 1px solid rgba(111, 51, 36, 0.34);
+    transform: rotate(-2deg);
 }
 
 .eyebrow,
@@ -210,16 +256,17 @@ ul {
 }
 
 h1 {
-    max-width: 12ch;
-    font-size: 4.2rem;
-    line-height: 0.96;
-    font-weight: 950;
+    max-width: 13ch;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 4.35rem;
+    line-height: 0.94;
+    font-weight: 900;
 }
 
 .hero-copy p:last-child {
-    max-width: 680px;
+    max-width: 660px;
     color: var(--muted);
-    font-size: 1.12rem;
+    font-size: 1.05rem;
 }
 
 .source-card {
@@ -227,10 +274,12 @@ h1 {
     display: grid;
     gap: 0.65rem;
     align-content: end;
+    background: var(--paper-deep);
 }
 
 .source-card strong {
-    font-size: 1.2rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.35rem;
 }
 
 .source-card p {
@@ -240,6 +289,7 @@ h1 {
 .control-panel {
     margin: 1rem 0;
     padding: 1rem;
+    background: rgba(255, 250, 240, 0.82);
 }
 
 .mood-grid {
@@ -255,14 +305,14 @@ h1 {
     color: var(--muted);
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: var(--radius);
+    border-radius: 999px;
     font-weight: 900;
 }
 
 .mood-button:hover,
 .mood-button:focus-visible,
 .mood-button.is-active {
-    color: #fffaf1;
+    color: var(--surface);
     background: var(--accent-strong);
     border-color: var(--accent-strong);
     outline: none;
@@ -279,6 +329,10 @@ h1 {
     padding: 1.4rem;
     display: grid;
     gap: 1.1rem;
+}
+
+.quote-card {
+    padding-left: 2.15rem;
 }
 
 .quote-meta {
@@ -298,10 +352,17 @@ h1 {
     font-weight: 900;
 }
 
+blockquote {
+    position: relative;
+    padding-left: 1.3rem;
+    border-left: 2px solid var(--accent);
+}
+
 blockquote p {
-    font-size: 2.25rem;
-    line-height: 1.14;
-    font-weight: 850;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2.45rem;
+    line-height: 1.12;
+    font-weight: 800;
 }
 
 #quote-author {
@@ -312,29 +373,32 @@ blockquote p {
 
 .prompt-card {
     align-content: start;
-    background: var(--ink);
-    color: #fffaf1;
+    color: var(--surface);
+    background:
+        linear-gradient(135deg, rgba(215, 181, 109, 0.1), transparent 40%),
+        var(--ink);
 }
 
 .prompt-card .section-label {
-    color: #9be0d3;
+    color: #e8c982;
 }
 
 .prompt-card p {
-    color: #dce8e4;
+    color: #e9dfcf;
 }
 
 .prompt-card #creative-prompt {
-    color: #fffaf1;
-    font-size: 1.35rem;
-    font-weight: 850;
-    line-height: 1.25;
+    color: var(--surface);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.42rem;
+    font-weight: 800;
+    line-height: 1.26;
 }
 
 .prompt-hint {
     display: grid;
     gap: 0.2rem;
-    color: #111827;
+    color: var(--ink);
     background: var(--gold);
     border-color: transparent;
 }
@@ -360,13 +424,14 @@ blockquote p {
 }
 
 .panel h2 {
-    font-size: 1.5rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.65rem;
 }
 
 .empty-state {
     color: var(--muted);
     padding: 1rem;
-    background: var(--surface-alt);
+    background: rgba(240, 230, 213, 0.72);
     border: 1px dashed var(--line);
     border-radius: var(--radius);
 }
@@ -391,7 +456,8 @@ blockquote p {
 
 .quote-list p {
     color: var(--ink);
-    font-weight: 800;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
 }
 
 .quote-list small {
@@ -429,7 +495,7 @@ blockquote p {
     z-index: 20;
     max-width: min(340px, calc(100% - 2rem));
     padding: 0.85rem 1rem;
-    color: #fffaf1;
+    color: var(--surface);
     background: var(--ink);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -460,7 +526,7 @@ blockquote p {
     }
 
     blockquote p {
-        font-size: 1.75rem;
+        font-size: 1.85rem;
     }
 }
 
@@ -483,6 +549,10 @@ blockquote p {
     .prompt-card,
     .panel {
         padding: 1rem;
+    }
+
+    .quote-card {
+        padding-left: 1rem;
     }
 
     .quote-actions .primary-button,
