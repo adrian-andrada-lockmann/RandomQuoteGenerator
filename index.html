@@ -4,27 +4,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./style.css">
-    <title>Random Quote Generator</title>
-    <main>
+    <meta name="description"
+        content="A bilingual creative quote studio with random quotes, reflection prompts, moods, favorites, and resilient API fallback.">
+    <meta name="theme-color" content="#111827">
+    <title>Random Quote Creative Studio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
 <body>
-    <div id="quote-box">
-        <h1 id="title">Random Quote Generator</h1>
-        <hr>
-        <p id="text"></p>
-        <p id="author"></p>
-        <hr>
-        <button id="new-quote">Generate a new quote
-        </button>
-        <br>
-        <a class="twitter-share-button" target="_blank" id="tweet-quote" href="https://twitter.com/intent/tweet"
-            data-size="large">Post</a>
+    <div class="app-shell">
+        <header class="app-header">
+            <a class="brand" href="#studio" aria-label="Random Quote Creative Studio">
+                <span class="brand-mark">RQ</span>
+                <span>
+                    <strong data-i18n="appName">Random Quote</strong>
+                    <small data-i18n="appSubtitle">Creative Studio</small>
+                </span>
+            </a>
+
+            <div class="header-actions" aria-label="Display controls" data-i18n-aria="displayControls">
+                <button class="ghost-button" type="button" id="language-toggle" aria-label="Cambiar idioma a español">
+                    ES
+                </button>
+                <a class="ghost-button" href="https://github.com/adrian-andrada-lockmann/RandomQuoteGenerator"
+                    target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+        </header>
+
+        <main id="studio">
+            <section class="studio-hero" aria-labelledby="page-title">
+                <div class="hero-copy">
+                    <p class="eyebrow" data-i18n="eyebrow">Quotes, prompts, and ideas</p>
+                    <h1 id="page-title" data-i18n="title">A quote generator for creative momentum.</h1>
+                    <p data-i18n="intro">
+                        Pull a random quote, shape it through a mood, save favorites, and turn inspiration into a
+                        practical reflection prompt.
+                    </p>
+                </div>
+
+                <div class="source-card" aria-live="polite">
+                    <span class="source-label" id="source-label">Ready</span>
+                    <strong id="source-title" data-i18n="sourceReady">Hybrid quote engine</strong>
+                    <p id="source-copy" data-i18n="sourceCopy">
+                        Uses DummyJSON first, tries ZenQuotes when useful, and always falls back to local inspiration.
+                    </p>
+                </div>
+            </section>
+
+            <section class="control-panel" aria-labelledby="mood-title">
+                <div>
+                    <p class="section-label" id="mood-title" data-i18n="moodTitle">Choose a mood</p>
+                    <div class="mood-grid" id="category-filters" aria-label="Quote mood filters"
+                        data-i18n-aria="moodAria"></div>
+                </div>
+            </section>
+
+            <section class="quote-layout">
+                <article class="quote-card" aria-live="polite">
+                    <div class="quote-meta">
+                        <span id="category-pill" data-i18n="allMood">All moods</span>
+                        <span id="quote-source">Local</span>
+                    </div>
+                    <blockquote>
+                        <p id="quote-text" data-i18n="loadingQuote">Loading your first quote...</p>
+                    </blockquote>
+                    <footer id="quote-author">-</footer>
+                    <div class="quote-actions" aria-label="Quote actions" data-i18n-aria="quoteActions">
+                        <button class="primary-button" type="button" id="new-quote" data-i18n="newQuote">New quote</button>
+                        <button class="secondary-button" type="button" id="prompt-button" data-i18n="newPrompt">New prompt</button>
+                        <button class="secondary-button" type="button" id="copy-quote" data-i18n="copyQuote">Copy</button>
+                        <button class="secondary-button" type="button" id="save-favorite" data-i18n="saveFavorite">Save</button>
+                        <a class="secondary-button" id="share-quote" target="_blank" rel="noopener noreferrer"
+                            href="https://twitter.com/intent/tweet" data-i18n="shareQuote">Share</a>
+                    </div>
+                </article>
+
+                <aside class="prompt-card" aria-live="polite">
+                    <p class="section-label" data-i18n="promptTitle">Creative prompt</p>
+                    <p id="creative-prompt" data-i18n="promptLoading">
+                        Generate a quote to unlock a reflection prompt.
+                    </p>
+                    <div class="prompt-hint">
+                        <span data-i18n="promptHintLabel">Use it for</span>
+                        <strong data-i18n="promptHint">journaling, content ideas, hooks, or campaign angles.</strong>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="utility-grid">
+                <article class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="section-label" data-i18n="favoritesLabel">Favorites</p>
+                            <h2 data-i18n="favoritesTitle">Saved inspiration</h2>
+                        </div>
+                        <button class="text-button" type="button" id="clear-favorites" data-i18n="clearFavorites">Clear</button>
+                    </div>
+                    <div class="empty-state" id="favorites-empty" data-i18n="favoritesEmpty">
+                        Save quotes you want to revisit.
+                    </div>
+                    <ul class="quote-list" id="favorites-list"></ul>
+                </article>
+
+                <article class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="section-label" data-i18n="historyLabel">History</p>
+                            <h2 data-i18n="historyTitle">Recent pulls</h2>
+                        </div>
+                    </div>
+                    <div class="empty-state" id="history-empty" data-i18n="historyEmpty">
+                        Your latest quotes will appear here.
+                    </div>
+                    <ul class="quote-list" id="history-list"></ul>
+                </article>
+            </section>
+        </main>
     </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="JS.js"></script>
 </body>
-</main>
-<script src="JS.js"></script>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</head>
 
 </html>
